@@ -1,0 +1,75 @@
+--Prueba Base de Datos
+--Iniciar los servicios de MS SQL Server a través de Azure Data Studio.
+--Crear una base de datos con el nombre dbConferenceVG
+CREATE DATABASE dbConferenceVG
+GO
+
+--Poner en uso base de datos
+USE dbConferenceVG
+GO
+
+
+--Crear tabla PARTICIPANTE
+CREATE TABLE PARTICIPANTE
+(
+	
+	IDPAR INT IDENTITY(1,1),
+	FECREGPAR DATE,
+	NOMPAR NCHAR(60),
+	APEPAR NCHAR(80),
+	DNIPAR CHAR(8),
+	TIPPAR CHAR(1),
+	CELPAR CHAR(9),
+	EMAPAR NCHAR(90),
+	DIRPAR NCHAR(90),
+	ESTPAR CHAR(1) DEFAULT 'A', -- Agrega por default el estado A (activo)
+    CONSTRAINT PAR_PK PRIMARY KEY (IDPAR) -- Definiendo clave principal
+)
+GO
+
+--Crear tabla PONENTE
+CREATE TABLE PONENTE
+(
+	CODPON CHAR(9),
+	NOMPON NCHAR(60),
+	APEPON NCHAR(80),
+	CELPON CHAR(9),
+	DNIPON CHAR(8),
+	EMAPON NCHAR(90),
+	DIRPON NCHAR(90),
+    CONSTRAINT PON_PK PRIMARY KEY (CODPON) -- Definiendo clave principal
+)
+GO
+
+--Crear tabla CONFERENCIA
+CREATE TABLE CONFERENCIA
+(
+	CODCONF CHAR(5),
+	TEMCONF NCHAR(90),
+	FECCONF DATE,
+	PONCONF CHAR(5),
+    CONSTRAINT CONF_PK PRIMARY KEY (CODCONF) -- Definiendo clave principal
+)
+GO
+
+--Crear tabla REGISTRO
+CREATE TABLE REGISTRO
+(
+	CODREG CHAR(5),
+	IDPAR INT,
+	FECREG DATE,
+	CERTREG CHAR(1) DEFAULT 'S', -- Agrega por default el certificado S (Si)
+    CONSTRAINT REG_PK PRIMARY KEY (CODREG) -- Definiendo clave principal
+)
+GO
+
+--Crear tabla REGISTRODETALLE
+CREATE TABLE REGISTRODETALLE
+(
+	IDREGDET INT IDENTITY(1,1),
+	CODREG CHAR(5),
+	CODCONF CHAR(5),
+	CANTPART INT,
+    CONSTRAINT REGD_PK PRIMARY KEY (IDREGDET) -- Definiendo clave principal
+)
+GO
