@@ -97,3 +97,16 @@ ALTER TABLE REGISTRODETALLE
 ADD CONSTRAINT REGDREG_FK FOREIGN KEY (CODREG)
 REFERENCES REGISTRO (CODREG)
 GO
+
+--Insertar registros en la tabla PARTICIPANTE
+
+insert into PARTICIPANTE
+(NOMPAR, APEPAR, DNIPAR, TIPPAR, CELPAR, EMAPAR, DIRPAR, ESTPAR)
+values
+('Juan', 'Campos Perez', '40255133', '1', '986512478', 'juan.campos@vallegrande.edu.pe', 'Av. Miraflores', 'A'),
+('Sofia', 'Solano Avila', '40255133', '1', '986512478', 'juan.campos@vallegrande.edu.pe','Av. Miraflores', 'A')
+GO
+--Listar registros tabla CLIENTE
+
+SELECT * FROM PARTICIPANTE 
+GO
